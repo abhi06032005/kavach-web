@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kavach - Safety First</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background: #121212;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .card {
+            background: #1c1c1c;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: 15px;
+            text-align: center;
+            box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.5);
+        }
+        button {
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: darkred;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">🔒 Kavach - Your Safety Companion</div>
+    <div class="container">
+        <div class="card">
+            <h2>🚨 SOS Alert</h2>
+            <p>Send an emergency alert with your live location.</p>
+            <button id="sosButton">Send SOS</button>
+        </div>
+        <div class="card">
+            <h2>📍 Live Location</h2>
+            <p>Enable real-time location sharing with trusted contacts.</p>
+            <p id="locationText">Status: Not shared</p>
+        </div>
+        <div class="card">
+            <h2>📢 Awareness</h2>
+            <p>Stay updated with safety tips and emergency contacts.</p>
+            <button>Learn More</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('sosButton').addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        document.getElementById("locationText").innerText = `📍 Location: ${latitude}, ${longitude}`;
+                        fetch(`http://127.0.0.1:5000/send_sos?lat=${latitude}&lon=${longitude}`)
+                        .then(response => response.text())
+                        .then(data => {
+                            alert(data);
+                        })
+                        .catch(error => {
+                            alert('Error sending SOS');
+                        });
+                    },
+                    function() {
+                        alert("Location access denied. Enable GPS.");
+                    }
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        });
+    </script>
+</body>
+</html>

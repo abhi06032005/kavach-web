@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kavach - Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: url('https://source.unsplash.com/1600x900/?women,empowerment') no-repeat center center/cover;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background 1s ease-in-out;
+        }
+        
+        body:hover {
+            background: url('https://images.app.goo.gl/GiiPRothXRyftg2r5') no-repeat center center/cover;
+        }
+        
+        .signup-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.2);
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 18px;
+            width: 100%;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>👩‍🎓 Join Kavach - Empower Women</h2>
+        <p>Be part of a safety-driven community.</p>
+        <form id="signupForm">
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+            window.location.href = 'main.html'; // Redirect to main.html
+        });
+    </script>
+</body>
+</html>
+
